@@ -3,7 +3,8 @@
 DROP FUNCTION IF EXISTS circ_log_item_barcode_search;
 
 CREATE FUNCTION circ_log_item_barcode_search(
-    ibarcode TEXT DEFAULT '')
+    ibarcode TEXT DEFAULT ''
+    timezone TEXT DEFAULT 'America/Chicago')
 RETURNS TABLE(
     user_barcode TEXT,
     item_barcode TEXT,
@@ -18,7 +19,7 @@ SELECT cl.jsonb->>'userBarcode' AS user_barcode,
   items->>'itemBarcode' AS item_barcode,
   cl.jsonb->>'object' AS object,
   cl.jsonb->>'action' AS action,
-  (cl.jsonb->>'date')::TIMESTAMPTZ AT TIME ZONE 'America/Chicago' AS date,
+  (cl.jsonb->>'date')::TIMESTAMPTZ AT TIME ZONE timezone AS date,
   spt.name AS service_point,
   cl.jsonb->>'source' AS source,
   cl.jsonb->>'description' AS description
