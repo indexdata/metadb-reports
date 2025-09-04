@@ -18,7 +18,7 @@ select cl.jsonb->>'userBarcode' as user_barcode,
   items->>'itemBarcode' as item_barcode,
   cl.jsonb->>'object' as object,
   cl.jsonb->>'action' as action,
-  (cl.jsonb->>'date')::timestamptz as date,
+  (cl.jsonb->>'date')::timestamptz at time zone 'America/Chicago' as date,
   spt.name as service_point,
   cl.jsonb->>'source' as source,
   cl.jsonb->>'description' as description
