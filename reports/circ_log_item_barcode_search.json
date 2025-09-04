@@ -1,7 +1,7 @@
 {
   "displayName": "Search the folio_audit circulation_logs table by item barcode",
   "description": "Find circulation log entries for the specified item barcode",
-  "instructions": "Enter an item barcode to search for. Exact match only.",
+  "instructions": "Enter an item barcode to search for (exact match only), and the desired time zone for results.",
   "parameters": [
     {
       "name": "ibarcode",
@@ -13,6 +13,7 @@
       "name": "timezone",
       "displayName": "Time zone",
       "type": "text",
+      "default": "America/Chicago",
       "required": true
     }
   ]
