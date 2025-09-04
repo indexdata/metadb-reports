@@ -3,7 +3,7 @@
 DROP FUNCTION IF EXISTS circ_log_item_barcode_search;
 
 CREATE FUNCTION circ_log_item_barcode_search(
-    ibarcode TEXT DEFAULT ''
+    ibarcode TEXT DEFAULT '',
     timezone TEXT DEFAULT 'America/Chicago')
 RETURNS TABLE(
     user_barcode TEXT,
