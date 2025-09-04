@@ -14,19 +14,19 @@ RETURNS TABLE(
     source TEXT,
     description TEXT)
 AS $$
-select cl.jsonb->>'userBarcode' as user_barcode,
-  items->>'itemBarcode' as item_barcode,
-  cl.jsonb->>'object' as object,
-  cl.jsonb->>'action' as action,
-  (cl.jsonb->>'date')::timestamptz at time zone 'America/Chicago' as date,
-  spt.name as service_point,
-  cl.jsonb->>'source' as source,
-  cl.jsonb->>'description' as description
-from folio_audit.circulation_logs cl
-cross join jsonb_array_elements(cl.jsonb->'items') as items
-left join folio_inventory.service_point__t spt on spt.id::text = cl.jsonb->>'servicePointId'
-where items->>'itemBarcode' = ibarcode
-order by (cl.jsonb->>'date')::timestamptz desc
+SELECT cl.jsonb->>'userBarcode' AS user_barcode,
+  items->>'itemBarcode' AS item_barcode,
+  cl.jsonb->>'object' AS object,
+  cl.jsonb->>'action' AS action,
+  (cl.jsonb->>'date')::TIMESTAMPTZ AT TIME ZONE 'America/Chicago' AS date,
+  spt.name AS service_point,
+  cl.jsonb->>'source' AS source,
+  cl.jsonb->>'description' AS description
+FROM folio_audit.circulation_logs cl
+CROSS JOIN jsonb_array_elements(cl.jsonb->'items') AS items
+LEFT JOIN folio_inventory.service_point__t spt ON spt.id::text = cl.jsonb->>'servicePointId'
+WHERE items->>'itemBarcode' = ibarcode
+ORDER BY (cl.jsonb->>'date')::TIMESTAMPTZ DESC
 $$
 LANGUAGE SQL
 STABLE
