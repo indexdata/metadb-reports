@@ -1,0 +1,13 @@
+{
+  "displayName": "Search the folio_audit circulation_logs table by item barcode",
+  "description": "Find circulation log entries for the specified item barcodee",
+  "instructions": "Enter an item barcode to search for. Exact match only.",
+  "parameters": [
+    {
+      "name": "ibarcode",
+      "displayName": "Item barcode",
+      "type": "text",
+      "required": true
+    }
+  ]
+}
