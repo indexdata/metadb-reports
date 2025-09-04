@@ -8,6 +8,12 @@
       "displayName": "Item barcode",
       "type": "text",
       "required": true
+    },
+    {
+      "name": "timezone",
+      "displayName": "Time zone",
+      "type": "text",
+      "required": true
     }
   ]
 }
